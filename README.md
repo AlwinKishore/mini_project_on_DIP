@@ -3,13 +3,13 @@ This is a mini project on Digital Image Processing for my academic purpose.
 This project is to extract the text from the image and convert it into 'pdf' or 'doc' format. 
 
 Let's see what are the requirement libraries for this project.
->pillow == '9.2.0'
->pytesseract == '0.3.10'
->easygui == '0.98.3'
->sys 
->os
->tkinter
->fpdf == '1.7.2'
+>pillow == '9.2.0',
+>pytesseract == '0.3.10',
+>easygui == '0.98.3',
+>sys,
+>os,
+>tkinter,
+>fpdf == '1.7.2',
 >docx == '0.2.4'
 
 Tkinter:
