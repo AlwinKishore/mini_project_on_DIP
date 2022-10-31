@@ -44,6 +44,7 @@ def upload():
 
 
 def read_image(path):
+    global img
     print(path)
     # img = PIL.Image.open(path)
     try:
@@ -96,6 +97,10 @@ def find_text(path):
     save2.configure(background='#364156', foreground='white', font=('calibri', 10, 'bold'))
     save2.pack(side=TOP, pady=50)
 
+    save3 = Button(top, text="Save image in 'txt' format", command=lambda: save_as_txt(msg, path), padx=30, pady=5)
+    save3.configure(background='#364156', foreground='white', font=('calibri', 10, 'bold'))
+    save3.pack(side=TOP, pady=50)
+
 
 def save_as_pdf(msg, path):
     '''
@@ -106,16 +111,14 @@ def save_as_pdf(msg, path):
     '''
     # print(path)
 
-    newName = "Pdf_file"
-    path1 = os.path.dirname(path)
+    dir_path = os.path.splitext(path)[0]
+    dir_path = dir_path+'.pdf'
     msg1 = msg.encode('latin-1', 'replace').decode('latin-1')
-    # extension = os.path.splitext(path)[1]
-    path = os.path.join(path1, newName + '.pdf')
-    fileName = os.path.join(newName,'.pdf')
-    pdf.cell(20, 5, txt=msg1, ln=2, align='P')
+    # pdf.cell(20, 5, txt=msg1, ln=2, align='P')
+    pdf.multi_cell(h=5.0, align='L', w=0, txt=msg1, border=0)
     try:
         # pdf.output(fileName) #, 'F'
-        pdf.output("Pdf_file.pdf", 'F')
+        pdf.output(dir_path, 'F')
         msg = "'PDF' File created successfully"
         tk.messagebox.showinfo(title="Confirmation Message", message=msg)
         # sys.exit()
@@ -126,16 +129,15 @@ def save_as_pdf(msg, path):
 
 
 def save_as_doc(msg, path):
-    newName = "Doc_file"
-    path1 = os.path.dirname(path)
-    path = os.path.join(path1, newName + '.doc')
+    dir_path = os.path.splitext(path)[0]
+    dir_path = dir_path + '.doc'
     # doc.add_heading(msg, 3)
     para = doc.add_paragraph().add_run(msg)
     para.font.size = Pt(12)
     para.font.color.rgb = RGBColor(0,0,0)
 
     try:
-        doc.save(path)
+        doc.save(dir_path)
         msg = "Successfully created 'doc' file"
         tk.messagebox.showinfo(title="Confirmation Message", message=msg)
         # sys.exit()
@@ -145,6 +147,19 @@ def save_as_doc(msg, path):
         sys.exit()
     return
 
+def save_as_txt(msg,path):
+    dir_path = os.path.splitext(path)[0]
+    dir_path = dir_path+'.txt'
+    print(dir_path)
+    try:
+        f = open(dir_path,'w')
+        f.write(msg)
+        f.close()
+        msg = "Successfully created 'txt' file"
+        tk.messagebox.showinfo(title="Confirmation Message", message=msg)
+    except:
+        msg = "Error in creating 'txt' file"
+        tk.messagebox.showinfo(title="Error Message", message=msg)
 
 upload = Button(top, text="Upload the image", command=upload, padx=10, pady=5)
 upload.configure(background='#364156', foreground='white', font=('calibri', 10, 'bold'))
