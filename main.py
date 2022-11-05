@@ -1,9 +1,9 @@
 # mini-project on DIP
-# convert image into 'pdf' or 'doc' file
+# convert image into 'pdf','txt' and 'doc' file
 
 # importing necessary libraries
 import PIL
-from PIL import Image
+from PIL import Image, ImageFilter
 import pytesseract
 import easygui  # to open the filebox
 import sys
@@ -15,9 +15,10 @@ from fpdf import FPDF
 import docx
 from docx.shared import Pt, RGBColor
 
+
 top = tk.Tk()
 top.geometry('600x500')
-top.title('Convert image into PDF or DOC file')
+top.title('Text Extraction And File Formating')
 top.configure(background='white')
 label = Label(top, background='#CDCDCD', font=('calibri', 20, 'bold'))
 
@@ -55,6 +56,7 @@ def read_image(path):
         tk.messagebox.showinfo(title=None, message=msg)
     #     sys.exit()
     try:
+        img = img.filter(ImageFilter.EDGE_ENHANCE_MORE)
         img = img.convert('RGBA')
         pix = img.load()
     except:
