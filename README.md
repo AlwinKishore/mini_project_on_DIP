@@ -1,5 +1,5 @@
 # mini_project_on_DIP
-This is a mini project on Digital Image Processing for my academic purpose.
+A mini project on Digital Image Processing for my academic purpose.
 This project is to extract the text from the image and convert it into 'pdf' or 'doc' format. 
 
 Let's see what are the requirement libraries for this project.
